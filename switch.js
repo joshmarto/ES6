@@ -13,6 +13,7 @@ if (myFruit === "Apple") {
     console.log("That sounds pretty OK");
 }
 
+
 // switch
 function fruitLogger(fruit) {
     switch (fruit) {
