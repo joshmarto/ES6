@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Alarms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="clock.png" type="image/png">
+</head>
+<body>
+    <h1>Custom Alarms</h1>
+    <h4>Welcome to this program!</h4>
+    <button class="btn btn-info" id="addAlarm">Add alarm</button>
+    <div class="row" id="inAlarm">
+        <div class="col-2">
+            <label>Time</label><br/>
+            <label>Date</label><br/>
+            <input type="submit" class="btn btn-success form-control" value="Submit" id="submitAlarm" />
+        </div>
+        <div class="col-4">
+            <input type="time" class="form-control" id="timeAlarm" /><br/>
+            <input type="date" class="form-control" id="dateAlarm" />
+        </div>
+        <div class="col-1">
+            <button class="btn btn-danger" id="closeAddAlarm">X</button>
+        </div>
+    </div>
+    <div class="row" id="currentAlarms">
+        
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
