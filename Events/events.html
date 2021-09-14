@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Events</title>
+    <style>
+        #clicky {
+            background-color: teal;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .colored {
+            background-color: orange;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .green {
+            background-color: lawngreen;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        //LOAD EVENTS
+        //Waits inner DOM elements loads
+        document.addEventListener("DOMContentLoaded", addToLog);
+        //Waits external sheets or sources to load
+        window.addEventListener("load", checkImageSize);
+        function addToLog() {
+            console.log("DOM content load and parse");
+            const myLog = document.getElementById("log");
+            myLog.innerHTML += "<h6>Hello :D</h6>";
+        }
+        function checkImageSize() {
+            const myImg = document.getElementById("myImage");
+            console.log("Height: " + myImg.offsetHeight + " width: " + myImg.offsetWidth);
+            myImg.style.width = "500px";
+            myImg.style.height = "auto";
+            myImg.style.borderRadius = "50%";
+        }
+    </script>
+    <h1>Hello, world!</h1>
+    <div>
+        <p id="clicky">Click here!</p>
+        <button>Click me</button>
+    </div>
+    <div id="log">
+        <img src="https://i.imgur.com/8Ax4vyu.jpg" id="myImage"/>
+    </div>
+    <div id="background">
+        <h2>I am size H2 header</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+    <div id="background2">
+        <h2>I am another size H2 header</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+    </div>
+    <div id="div2">
+        <a href="https://www.google.com">Go to Google</a>
+        <form id="myForm" method="post">
+            <input id="myInput"/><br/>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="div3">
+        <p></p>
+        <textarea></textarea>
+    </div>
+    <script>
+        // Events
+        /*
+           - Any event that takes place in the DOM
+           - Can be user-generated or by an API
+           - Many types of events
+           - Event contains properties and methods
+           - addEventListener function takes in the event
+             to listen for, and a second argument to be
+             called whenever the described event fires.
+           - addEventListener("click", function(){
+             logic insed function;
+           })
+        */
+
+        const clickDiv = document.getElementById("clicky");
+        const clickableButton = document.querySelector("button");
+
+        clickableButton.addEventListener("click", function (event) {
+            console.log("Clicked");
+        });
+
+        clickableButton.addEventListener("focus", function () {
+            console.log(event);
+        });
+
+        clickableButton.addEventListener("focusout", function () {
+            console.log("Lost focus");
+        });
+
+        clickDiv.addEventListener("click", logEvent)
+
+        function logEvent(event) { // When call this method there is no need of call as a regular function. There is no need of pass parameters since it takes as only parameter the event on itself.
+            // This function is still not supported by ES6. The syntax to write it must be in ES5.
+            console.log(event.type);
+        }
+
+        function clickable(event) {
+            clickableButton.innerText = "Do not click";
+            clickableButton.style.backgroundColor = "white";
+            clickableButton.style.color = "black";
+            clickableButton.removeEventListener("click", logEvent);
+            console.log(event.type);
+        }
+
+        const bground = document.getElementById("background");
+        const bground2 = document.getElementById("background2");
+        const allLIs = document.querySelectorAll("li");
+        const allLI = document.querySelectorAll("li");
+        document.addEventListener("click", switchBackground);
+        function switchBackground(e) {
+            const hasBeenClicked = bground.contains(e.target);
+            if (e.which === 1) {
+                //bground.classList.toggle("colored");
+                if (hasBeenClicked) {
+                    bground.classList.add("colored");
+                } else {
+                    bground.classList.remove("colored");
+                }
+            }
+        }
+
+        const listItems = document.querySelector("ul");
+        listItems.addEventListener("click", addGreenBackground);
+        function addGreenBackground(e) {
+            e.stopPropagation();
+            const targetLi = e.target;
+            const green = document.querySelector(".green");
+            if (targetLi.nodeName === "ul") {
+                return;
+            }
+            if (green) {
+                green.classList.remove("green");
+            }
+            targetLi.classList.add("green");
+        }
+
+        for (const prop of allLI) {
+            prop.addEventListener("click", function (event) {
+                console.log(this);
+            })
+        }
+
+        //Preventing Default
+        const div2 = document.getElementById("div2");
+        const myLink = div2.querySelector("a");
+        myLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            alert("Not today!");
+        });
+
+        const myForm = div2.querySelector("form");
+        myForm.addEventListener("submit", addToList);
+        function addToList(e) {
+            e.preventDefault();
+            //event.preventDefault()  ==> prevents the regular action.
+            const myInput = document.getElementById("myInput").value;
+            console.log(myInput);
+            const newLi = document.createElement("li");
+            newLi.innerText = myInput;
+            console.log(newLi);
+            listItems.appendChild(newLi);
+            myForm.reset();
+        }
+
+
+        /*KEY EVENTS*/
+        document.addEventListener("keydown", function (e) {
+            if (e.keyCode === 32) {
+                console.log(e.keyCode);
+            }
+        });
+
+        document.addEventListener("keyup", function (e) {
+            if (e.keyCode === 32) {
+                console.log(e.keyCode);
+            }
+        });
+
+        const div3 = document.getElementById("div3");
+        const para = div3.querySelector("p");
+        const textArea = div3.querySelector("textarea");
+        const paraText = "User is typing...";
+        let timer;
+
+        function addText(e) {
+            para.innerText = paraText;
+        }
+        function removeText(e) {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                para.innerText = "";
+            }, 1000);
+        }
+
+        textArea.addEventListener("keydown", addText);
+        textArea.addEventListener("keyup", removeText);
+    </script>
+</body>
+</html>
