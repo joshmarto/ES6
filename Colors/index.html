@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>My Favorite Colors</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>My Favorite Colors</h1>
+        <h2>Now I am going to present some of my favorite colors to you:</h2>
+        <div id="rectangleWrapper">
+            <section>
+                <div class="color-bar" id="color1">
+                    <p>Purple</p>
+                </div>
+                <label>#9B23F3</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color2">
+                    <p>Green</p>
+                </div>
+                <label>#39F323</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color3">
+                    <p>Blue</p>
+                </div>
+                <label>#2359F3</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color4">
+                    <p>Orange</p>
+                </div>
+                <label>#FC900E</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color5">
+                    <p>Black</p>
+                </div>
+                <label>#000000</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color6">
+                    <p>Golden</p>
+                </div>
+                <label>#FFD700</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color7">
+                    <p>Gray</p>
+                </div>
+                <label>#E7E7E7</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color8">
+                    <p>Skyblue</p>
+                </div>
+                <label>#1FFBEA</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color9">
+                    <p>Red</p>
+                </div>
+                <label>#2E1503</label>
+            </section>
+            <section>
+                <div class="color-bar" id="color10">
+                    <p>Brown</p>
+                </div>
+                <label>#FB1F1F</label>
+            </section>
+        </div>
+        <script>
+            function paint(id, colorApply) {
+                const color = document.getElementById(id);
+                color.style.backgroundColor = colorApply;
+                color.style.color = colorApply;
+            }
+            colors = ["#9B23F3", "#39F323", "#2359F3", "#FC900E", "#000000", "#FFD700", "#E7E7E7", "#1FFBEA", "#2E1503", "#FB1F1F"];
+            let count = 1;
+            console.log("Here are the rectangle IDs");
+            for (let color of colors) {
+                paint("color" + count, color);
+                console.log("color" + count);
+                count++;
+            }
+        </script>
+    </body>
+</html>
