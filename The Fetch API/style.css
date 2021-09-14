@@ -1,0 +1,15 @@
+h1, h3{
+    text-align: center;
+}
+
+.planet {
+    background-color: teal;
+    padding: 5px;
+    color: whitesmoke;
+    border: solid white; 3px;
+}
+
+.highlighted {
+    background-color: yellow;
+    color: black;
+}
