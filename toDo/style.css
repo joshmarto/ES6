@@ -1,0 +1,26 @@
+﻿body{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+h1, h4{
+    text-align: center;
+}
+form > input, form > label{
+    border: solid 2px white;
+}
+
+
+#login, #actualList, #dashboard{
+    border: 1px solid #4800ff;
+    padding: 10px;
+}
+#form-signUp, #form-logIn{
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+#form-signUp > .form, #form-logIn > .form, #newList{
+    border: solid 1px #4800ff;
+    padding: 2.5px;
+    padding-left: 6%;
+}
